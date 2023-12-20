@@ -25,8 +25,8 @@ streamlink "https://chzzk.naver.com/live/{고유ID}" {화질} --http-header "Use
 ```
 
 Streamlink 디렉터리(`%APPDATA%\Streamlink\plugins`)에 해당 파이썬 파일을 저장하여 주십시오.
-<br>Streamlink를 이용한 영상 다운로드가 기본적으로 막혀있어, User-Agent 변경이 반드시 필요합니다. 위 명령어는 Windows 10(x64) 환경에서 Chrome 120 버전을 이용한 접속으로 변경한 예시입니다.
-<br>Windows의 경우 배치 파일(.cmd/.bat)로 생성 후 사용하면 편리하게 사용할 수 있습니다.
+<br<br>>Streamlink를 이용한 영상 다운로드가 기본적으로 막혀있어, User-Agent 변경이 반드시 필요합니다. 위 명령어는 Windows 10(x64) 환경에서 Chrome 120 버전을 이용한 접속으로 변경한 예시입니다.
+<br><br>Windows의 경우 배치 파일(.cmd/.bat)로 생성 후 사용하면 편리하게 사용할 수 있습니다.
 
 
 <br/><br/>
