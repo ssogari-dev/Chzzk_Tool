@@ -36,10 +36,10 @@ class ChzzkPlugin(Plugin):
             hls_url = json.loads(stream_info).get('media', [{}])[0].get('path')
             # hls = m3u8.loads(hls_url)
             
-            self.logger.info("Stream Title: {0}".format(live_title))
-            self.logger.info("Channel Name: {0}".format(channel_name))
-            self.logger.info("Category: {0}".format(category))
-            self.logger.info("HLS URL: {0}".format(hls_url))
+            # self.logger.info("Stream Title: {0}".format(live_title))
+            # self.logger.info("Channel Name: {0}".format(channel_name))
+            # self.logger.info("Category: {0}".format(category))
+            # self.logger.info("HLS URL: {0}".format(hls_url))
             self.author = channel_name
             self.category = category
             self.title = live_title
