@@ -27,7 +27,6 @@ streamlink "https://chzzk.naver.com/live/{고유ID}" {화질} -o {내보낼 파�
 ```
 
 <br>Streamlink 디렉터리(`%APPDATA%\Streamlink\plugins`)에 해당 파이썬 파일을 저장하여 주십시오.
-<br>Windows의 경우 배치 파일(.cmd/.bat)로 생성 후 사용하면 편리하게 사용할 수 있습니다.
 <br><br>
 | metadata | Description |
 |--|--|
