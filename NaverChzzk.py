@@ -1,6 +1,5 @@
-import re
-import json
-import requests
+import re, json, requests
+# import m3u8
 from streamlink.plugin import Plugin, pluginmatcher
 from streamlink.stream import HLSStream
 
@@ -35,19 +34,19 @@ class ChzzkPlugin(Plugin):
             category = content.get('liveCategory')
             stream_info = content.get('livePlaybackJson')
             hls_url = json.loads(stream_info).get('media', [{}])[0].get('path')
-
+            # hls = m3u8.loads(hls_url)
+            
             self.logger.info("Stream Title: {0}".format(live_title))
             self.logger.info("Channel Name: {0}".format(channel_name))
             self.logger.info("Category: {0}".format(category))
             self.logger.info("HLS URL: {0}".format(hls_url))
+            self.author = channel_name
+            self.category = category
+            self.title = live_title
 
-            streams = {
-                "live": HLSStream(self.session, hls_url),
-            }
-
-            return streams
+            yield from HLSStream.parse_variant_playlist(self.session, hls_url).items()
         except json.JSONDecodeError as e:
             self.logger.error("Failed to decode JSON response: {0}".format(str(e)))
             return
-
+        
 __plugin__ = ChzzkPlugin
