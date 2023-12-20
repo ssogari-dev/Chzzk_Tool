@@ -19,7 +19,6 @@
 ### Streamlink Plugin (NaverChzzk.py)
 Streamlink를 이용한 치지직(Chzzk) 방송 정보를 얻는 플러그인입니다.
 <br><br>아래의 예시 명령어를 이용하면 실시간 방송 다운로드도 가능합니다.
-<br>화질 정보 및 Output 파일 정보를 입력하지 않으면, 방송 정보 조회만 가능합니다.<br>
 > **Note:**  사용 전 Python과 Streamlink 설치가 필요합니다.
 
 ```
