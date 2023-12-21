@@ -17,8 +17,8 @@
 <br/><br/>
 
 ### Streamlink Plugin (NaverChzzk.py)
-Streamlink를 이용한 치지직(Chzzk) 방송 정보를 얻는 플러그인입니다.
-<br><br>아래의 예시 명령어를 이용하면 실시간 방송 다운로드도 가능합니다.
+Streamlink를 이용한 치지직(Chzzk) 방송 및 VOD 정보를 얻는 플러그인입니다.
+<br><br>아래의 예시 명령어를 이용하면 LIVE/VOD 영상 다운로드도 가능합니다.
 > **Note:**  사용 전 Python과 Streamlink 설치가 필요합니다.
 
 ```
@@ -32,6 +32,7 @@ streamlink "https://chzzk.naver.com/live/{고유ID}" {화질} -o {내보낼 파�
 | {title} | Streaming Title |
 | {category} | Streaming Category (usu. Korean) |
 | {author} | Channel Name |
+| {vod_date} | Record Date (only for VOD) |
 
 
 
