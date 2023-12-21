@@ -1,6 +1,7 @@
 import re, json, requests
 from streamlink.plugin import Plugin, pluginmatcher
 from streamlink.stream import HLSStream, DASHStream
+# from streamlink.stream.dash.dash import DASHStream
 
 @pluginmatcher(re.compile(
     r'https?://chzzk\.naver\.com/(?:video/(?P<video_no>\d+)|live/(?P<channel_id>[^/?]+))$',
@@ -76,11 +77,14 @@ class ChzzkPlugin(Plugin):
             self.author = content.get('channel', {}).get('channelName')
             self.category = content.get('videoCategory')
             self.title = content.get('videoTitle')
+            self.vodDate = content.get('liveOpenDate')[0:10]
             
-            yield from DASHStream.parse_manifest(
+            for name, stream in DASHStream.parse_manifest(
                 self.session, video_url,
                 headers={"Accept": "application/dash+xml"}
-            ).items()
+            ).items():
+                if stream.video_representation.mimeType == "video/mp2t":
+                    yield name, stream
 
         except json.JSONDecodeError as e:
             self.logger.error("Failed to decode JSON response: {0}".format(str(e)))
