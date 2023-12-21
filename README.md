@@ -36,7 +36,6 @@ streamlink "https://chzzk.naver.com/live/{고유ID}" {화질} -o {내보낼 파�
 
 
 
-
 <br/><br/><br/>
 ### Twitter Alert Bot (Twitter_Alert_Chzzk.py)
 스트리머가 방송을 켜면 Twitter(현 X)에 자동으로 트윗을 게시하는 코드입니다.
