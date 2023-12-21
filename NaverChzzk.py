@@ -76,7 +76,6 @@ class ChzzkPlugin(Plugin):
             self.author = content.get('channel', {}).get('channelName')
             self.category = content.get('videoCategory')
             self.title = content.get('videoTitle')
-            self.vod_date = content.get('liveOpenDate')[0:10]
             
             yield from DASHStream.parse_manifest(
                 self.session, video_url,
