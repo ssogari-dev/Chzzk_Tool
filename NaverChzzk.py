@@ -7,9 +7,13 @@ from streamlink.stream import HLSStream, DASHStream
     r'https?://chzzk\.naver\.com/(?:video/(?P<video_no>\d+)|live/(?P<channel_id>[^/?]+))$',
 ))
 class ChzzkPlugin(Plugin):
-    LIVE_INFO = "https://api.chzzk.naver.com/service/v1/channels/{channel_id}/live-detail"
-    VOD_URL = "https://apis.naver.com/neonplayer/vodplay/v1/playback/{video_id}?key={in_key}"
-    VOD_INFO = "https://api.chzzk.naver.com/service/v1/videos/{video_no}"
+    LIVE_INFO = "https://api.chzzk.naver.com/service/v2/channels/{channel_id}/live-detail"
+    VOD_URL = "https://apis.naver.com/neonplayer/vodplay/v2/playback/{video_id}?key={in_key}"
+    VOD_INFO = "https://api.chzzk.naver.com/service/v2/videos/{video_no}"
+    headers = {
+	"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+}
+    
 
     def _get_streams(self):
         channel_id = self.match.group("channel_id")
@@ -58,7 +62,7 @@ class ChzzkPlugin(Plugin):
         api_url = self.VOD_INFO.format(video_no=video_no)
 
         try:
-            response = requests.get(api_url)
+            response = requests.get(api_url, headers=self.headers)
             response.raise_for_status()
         except requests.RequestException as e:
             self.logger.error("Failed to fetch video information: {0}".format(str(e)))
