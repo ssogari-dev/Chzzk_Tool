@@ -28,7 +28,7 @@ class ChzzkPlugin(Plugin):
         api_url = self.LIVE_INFO.format(channel_id=channel_id)
 
         try:
-            response = requests.get(api_url)
+            response = requests.get(api_url, headers=self.headers)
             response.raise_for_status()
         except requests.RequestException as e:
             self.logger.error("Failed to fetch channel information: {0}".format(str(e)))
