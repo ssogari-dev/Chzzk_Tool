@@ -15,7 +15,7 @@ channel_id = '5f800579267362c952f76f3c6fe695b2'
 
 # API 엔드포인트 URL
 tweet_url = 'https://api.twitter.com/2/tweets'
-naver_api_url = f'https://api.chzzk.naver.com/service/v1/channels/{channel_id}/live-detail'
+naver_api_url = f'https://api.chzzk.naver.com/service/v2/channels/{channel_id}/live-detail'
 
 
 # OAuth1 인증 설정
