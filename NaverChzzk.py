@@ -1,23 +1,31 @@
 import re, json, requests
-from streamlink.plugin import Plugin, pluginmatcher
+from streamlink.plugin import Plugin, pluginmatcher, pluginargument
 from streamlink.stream import HLSStream, DASHStream
 # from streamlink.stream.dash.dash import DASHStream
 
 @pluginmatcher(re.compile(
     r'https?://chzzk\.naver\.com/(?:video/(?P<video_no>\d+)|live/(?P<channel_id>[^/?]+))$',
 ))
+@pluginargument(
+    "cookie",
+    help="API 요청에 네이버 쿠키를 적용합니다(NID_AUT, NID_SES 필요)\nex) NID_AUT=Value; NID_SES=Value2",
+) 
 class ChzzkPlugin(Plugin):
     LIVE_INFO = "https://api.chzzk.naver.com/service/v2/channels/{channel_id}/live-detail"
     VOD_URL = "https://apis.naver.com/neonplayer/vodplay/v2/playback/{video_id}?key={in_key}"
     VOD_INFO = "https://api.chzzk.naver.com/service/v2/videos/{video_no}"
+    User_Agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
     headers = {
-	"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
-}
+            "User-Agent":User_Agent,
+    }
     
-
     def _get_streams(self):
         channel_id = self.match.group("channel_id")
         video_no = self.match.group("video_no")
+
+        cookie = self.get_option("cookie")
+        if cookie:
+            self.headers['Cookie'] = cookie
 
         if channel_id:
             return self._get_live_streams(channel_id)
@@ -83,7 +91,7 @@ class ChzzkPlugin(Plugin):
             self.title = content.get('videoTitle')
             # self.vodDate = content.get('liveOpenDate')[0:10]
             # vodDate not worked.
-            
+           
             for name, stream in DASHStream.parse_manifest(
                 self.session, video_url,
                 headers={"Accept": "application/dash+xml"}
