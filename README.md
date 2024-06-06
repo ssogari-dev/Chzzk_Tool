@@ -32,7 +32,6 @@ streamlink "https://chzzk.naver.com/live/{고유ID}" {화질} -o {내보낼 파�
 | {title} | Streaming Title |
 | {category} | Streaming Category (usu. Korean) |
 | {author} | Channel Name |
-| {vod_date} | Record Date (only for VOD) |
 
 
 
